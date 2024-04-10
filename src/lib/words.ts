@@ -19,6 +19,7 @@ import {
   WORDS_L8,
 } from '../constants/wordlist'
 import { getToday } from './dateutils'
+import { loadGameStateFromLocalStorage } from './localStorage'
 import { getGuessStatuses } from './statuses'
 
 interface WordLengthArrays {
@@ -171,8 +172,12 @@ export const getSolution = (gameDate: Date) => {
   const index = getIndex(gameDate)
   const wordOfTheDay = getWordOfDay(index)
 
+  const load = loadGameStateFromLocalStorage(getIsLatestGame())
+
   return {
-    solution: getNewSolutionWord(wordOfTheDay),
+    solution: !load?.guesses.length
+      ? getNewSolutionWord(wordOfTheDay)
+      : load.solution,
     solutionGameDate: gameDate,
     solutionIndex: index,
     tomorrow: nextGameDate.valueOf(),

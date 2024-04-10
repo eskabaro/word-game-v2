@@ -1,3 +1,5 @@
+import { getNewSolutionWord } from './words'
+
 const gameStateKey = 'gameState'
 const archiveGameStateKey = 'archiveGameState'
 const highContrastKey = 'highContrast'
@@ -30,6 +32,17 @@ export type GameStats = {
   bestStreak: number
   totalGames: number
   successRate: number
+}
+
+export const saveNewSolution = (isLatestGame: boolean, guegges?: string[]) => {
+  const key = isLatestGame ? gameStateKey : archiveGameStateKey
+
+  const gameState: StoredGameState = {
+    solution: getNewSolutionWord(''),
+    guesses: guegges?.length ? guegges : [],
+  }
+
+  localStorage.setItem(key, JSON.stringify(gameState))
 }
 
 export const saveStatsToLocalStorage = (gameStats: GameStats) => {

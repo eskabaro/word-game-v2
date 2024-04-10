@@ -163,6 +163,17 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    const load = loadGameStateFromLocalStorage(getIsLatestGame())
+    const isInclude = load?.guesses.includes(load?.solution!)
+
+    if (isInclude) {
+      setIsGameWon(true)
+    } else if (load?.guesses.length && !isInclude) {
+      setIsGameLost(true)
+    }
+  }, [])
+
   const handleHighContrastMode = (isHighContrast: boolean) => {
     setIsHighContrastMode(isHighContrast)
     setStoredIsHighContrastMode(isHighContrast)
@@ -273,7 +284,7 @@ function App() {
       setCurrentGuess('')
 
       if (winningWord) {
-        setIsGameWon(true)
+        // setIsGameWon(true)
         if (isLatestGame) {
           setStats(addStatsForCompletedGame(stats, guesses.length))
         }
