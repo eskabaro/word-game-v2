@@ -167,9 +167,13 @@ function App() {
     const load = loadGameStateFromLocalStorage(getIsLatestGame())
     const isInclude = load?.guesses.includes(load?.solution!)
 
+    if (!load) {
+      return
+    }
+
     if (isInclude) {
       setIsGameWon(true)
-    } else if (load?.guesses.length && !isInclude) {
+    } else if (load.guesses.length === MAX_CHALLENGES) {
       setIsGameLost(true)
     }
   }, [])
