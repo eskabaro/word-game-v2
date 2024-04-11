@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import { ChangeEvent, Dispatch, SetStateAction } from 'react'
 
 import { WORD_LENGHT } from '../constants/settings'
@@ -37,15 +38,20 @@ export const Select = ({
       </h2>
       <div className="mt-1 flex items-center gap-3">
         {WORD_LENGHT.map((option) => (
-          <div key={option} className="flex gap-1">
+          <div key={option} className="h-11">
             <label
               htmlFor={String(option)}
-              className="text-xs text-gray-500 dark:text-gray-300"
+              className={classnames(
+                'grid h-11 w-10 cursor-pointer place-items-center rounded-md bg-gray-300 text-xs font-bold text-white duration-200 ease-in-out hover:bg-green-400',
+                {
+                  'bg-green-400': selectedOption === option,
+                }
+              )}
             >
               {option.charAt(option.length - 1)}
             </label>
             <input
-              className="appearance-none overflow-hidden"
+              className="invisible h-0 w-0"
               type="radio"
               name="number"
               id={String(option)}

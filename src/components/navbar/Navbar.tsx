@@ -3,10 +3,10 @@ import {
   ChartBarIcon,
   CogIcon,
   InformationCircleIcon,
-  LinkIcon,
 } from '@heroicons/react/outline'
 import classnames from 'classnames'
 
+import { ReactComponent as BarsIcon } from '../../assets/navbar-bars.svg'
 import { ENABLE_ARCHIVED_GAMES } from '../../constants/settings'
 import { GAME_TITLE } from '../../constants/strings'
 import { useClickOutside } from '../../hooks/useClickOutside'
@@ -28,9 +28,12 @@ export const Navbar = ({
 
   return (
     <div className="navbar">
-      <div className="navbar-content px-5 short:h-auto">
-        <div className="relative" ref={dropdownRef}>
-          <LinkIcon
+      <div className="grid h-12 grid-cols-3 px-5 short:h-auto">
+        <div
+          className="relative flex items-center justify-start"
+          ref={dropdownRef}
+        >
+          <BarsIcon
             className="h-6 w-6 cursor-pointer dark:stroke-white"
             onClick={() => setIsShow(!isShow)}
           />
@@ -59,8 +62,10 @@ export const Navbar = ({
             </ul>
           </div>
         </div>
-        <p className="text-xl font-bold dark:text-white">{GAME_TITLE}</p>
-        <div className="right-icons">
+        <p className="flex items-center justify-center text-xl font-bold dark:text-white">
+          {GAME_TITLE}
+        </p>
+        <div className="right-icons flex items-center justify-end">
           {ENABLE_ARCHIVED_GAMES && (
             <CalendarIcon
               className="mr-3 h-6 w-6 cursor-pointer dark:stroke-white"

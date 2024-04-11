@@ -34,17 +34,6 @@ export type GameStats = {
   successRate: number
 }
 
-export const saveNewSolution = (isLatestGame: boolean, guegges?: string[]) => {
-  const key = isLatestGame ? gameStateKey : archiveGameStateKey
-
-  const gameState: StoredGameState = {
-    solution: getNewSolutionWord(''),
-    guesses: guegges?.length ? guegges : [],
-  }
-
-  localStorage.setItem(key, JSON.stringify(gameState))
-}
-
 export const saveStatsToLocalStorage = (gameStats: GameStats) => {
   localStorage.setItem(gameStatKey, JSON.stringify(gameStats))
 }
