@@ -350,14 +350,16 @@ function App() {
               guesses={guesses}
               isRevealing={isRevealing}
             />
-            <figure className="flex flex-col items-center pt-8">
+            <div className="pt-8">
               <a href="https://wordmaker.info">
-                <img width="132" height="32" src="/logo.png" alt="logo" />
+                <figure className="flex flex-col items-center">
+                  <img width="132" height="32" src="/logo.png" alt="logo" />
+                  <figcaption className="text-base font-medium leading-6 text-gray-900 dark:text-white">
+                    Smart word assistant
+                  </figcaption>
+                </figure>
               </a>
-              <figcaption className="text-base font-medium leading-6 text-gray-900 dark:text-white">
-                Smart word assistant
-              </figcaption>
-            </figure>
+            </div>
           </Container>
           <InfoModal
             isOpen={isInfoModalOpen}
