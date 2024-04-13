@@ -70,6 +70,10 @@ svg.cursor-pointer:hover {
   margin-bottom: 2%;
 }
 
+.burger-link {
+  text-wrap: nowrap;
+}
+
 .right-icons {
   display: flex;
 }

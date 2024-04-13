@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import Div100vh from 'react-div-100vh'
 
 import { AlertContainer } from './components/alerts/AlertContainer'
+import { Container } from './components/container/Container'
 import { Grid } from './components/grid/Grid'
 import { Keyboard } from './components/keyboard/Keyboard'
 import { DatePickerModal } from './components/modals/DatePickerModal'
@@ -326,24 +327,30 @@ function App() {
             </p>
           </div>
         )}
-        <div className="mx-auto flex w-full grow flex-col px-1 pt-2 pb-8 sm:px-6 md:max-w-7xl lg:px-8 short:pb-2 short:pt-2">
-          <div className="flex grow flex-col justify-center pb-6 short:pb-2">
-            <Grid
+        <div className="mx-auto flex w-full grow flex-col pt-2 pb-8 md:max-w-7xl short:pb-2 short:pt-2">
+          <div className="flex h-full items-center">
+            <Container>
+              <div className="flex w-auto grow flex-col justify-center pb-6 short:pb-2">
+                <Grid
+                  solution={solution}
+                  guesses={guesses}
+                  currentGuess={currentGuess}
+                  isRevealing={isRevealing}
+                  currentRowClassName={currentRowClass}
+                />
+              </div>
+            </Container>
+          </div>
+          <Container>
+            <Keyboard
+              onChar={onChar}
+              onDelete={onDelete}
+              onEnter={onEnter}
               solution={solution}
               guesses={guesses}
-              currentGuess={currentGuess}
               isRevealing={isRevealing}
-              currentRowClassName={currentRowClass}
             />
-          </div>
-          <Keyboard
-            onChar={onChar}
-            onDelete={onDelete}
-            onEnter={onEnter}
-            solution={solution}
-            guesses={guesses}
-            isRevealing={isRevealing}
-          />
+          </Container>
           <InfoModal
             isOpen={isInfoModalOpen}
             handleClose={() => setIsInfoModalOpen(false)}
